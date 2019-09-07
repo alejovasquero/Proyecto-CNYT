@@ -1,3 +1,4 @@
+
 # **Ciencias Curso CNYT Ciencias naturales y tecnología**
 > _**Proyecto #1: Calculadora de matrices complejas**_\
 > _**4 de Septiembre de 2019**_\
@@ -81,12 +82,15 @@
     o) test_deberiaSerHermitiana():  Verifica que verifique correctamente matrices hermitianas 
     p) test_deberiaProductoTensor():  Verifica que el producto tensor entre 2 matrices funciones correctamente
  ![Resultados](MTEST.PNG)
-        
+       
 
-unittest.TextTestRunner().run(unittest.TestLoader().loadTestsFromTestCase(MatrizTest))
-
-        
-
-
-d) Información dirigida al usuario: Cómo usar el contenido del repositorio (librería y pruebas o
-documento Jupyter Notebook).
+> # Información dirigida al usuario
+> Para utilizar las clases o pruebas tenga en cuenta la siguientes pasos:
+>>  1)  Correr las otras librerías que sean requeridas, como complejo o matriz
+>>  ![IMPORTAR1](CORRER.PNG)
+>>  2) Importar las librerías de python, como math, numpy, etc.
+>>  ![IMPORTAR2](LIBRERIAS.PNG)
+>>  3) Ejecutar la clase que desee utilizar. En el caso de pruebas ejecuta el bloque y obtiene el resultado
+>>  ![correr](CLASE.PNG)
+>>  ![PRUEBA](PRUEBA.PNG) 
+>>  4) Listo para usar(instanciación y ejecución de servicios de las clases)
