@@ -53,7 +53,7 @@
     j) test_deberiaPolar():  Verifica que la forma polar de un Complejo sea correcta
     k) test_deberiaCartesiano():  Verifica que la forma cartesiana de un Complejo sea correcta
     
-   ![Resultados](CTEST.png)
+   ![Resultados](CTEST.PNG)
 
 
 
@@ -80,7 +80,7 @@
     ñ) test_deberiaSerUnitaria():  Verifica que verifique correctamente matrices unitarias
     o) test_deberiaSerHermitiana():  Verifica que verifique correctamente matrices hermitianas 
     p) test_deberiaProductoTensor():  Verifica que el producto tensor entre 2 matrices funciones correctamente
- ![Resultados](MTEST.png)
+ ![Resultados](MTEST.PNG)
         
 
 unittest.TextTestRunner().run(unittest.TestLoader().loadTestsFromTestCase(MatrizTest))
