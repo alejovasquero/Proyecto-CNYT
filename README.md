@@ -1,124 +1,59 @@
-# **Ciencias Curso CNYT Ciencias naturales y tecnología
+# **Ciencias Curso CNYT Ciencias naturales y tecnología**
 > _**Proyecto #1: Calculadora de matrices complejas**_\
 > _**4 de Septiembre de 2019**_\
 > _**David Alejandro Vasquez Carreño**_
 
 
 - Se definieron las siguientes clases con los siguientes métodos
-    1) Complejo
+    a) Clase Complejo: print(a) imprime el complejo con precisión de 2 decimales
+    
         TOLERANCIA: Representa la distancia minima al definir igualdades entre reales
-        
-        **__init__(self, parteReal: float, parteImaginaria: float, cartesiana=True)**\
-            Constructor: Recibe 3 parametros, minimo 2. El primero es la parte real del complejo, el segundo es la parte Compleja
-            y el 3 es opcional, indica si está dado en coordenadas cartesianas. True si está en cartesianas, False de lo contrario.
-            Por defecto es cartesianas.
-        
+        Se presentará la operación y la manera de hacerla en la librería.
+        Sea a y b números complejos representados en python, con parte real y parte imaginaria, teniendo las siguientes operaciones(a = Complejo(a,b) es igual a = a+bi):
+		1)  Suma         (a+b)
+		2)  Producto            (a*b)
+		3)  Resta              (a-b)
+		4)  División             (a/b, excepcion si b=0)
+		5)  Módulo            (a.modulo())
+		6)  Conjugado            (a.conjugado())
+		7)  Conversión entre representaciones polar y cartesiano        (a.polares() y a.cartesianas())
+		8)  Retornar la fase de un número complejo.        (a.polares() par ordenado con modulo y fase, de tipo complejo)
+	
+	b) Clase Matriz: (a = Matriz(filas, columnas, [[]*columnas]*filas) donde cada elemento es un tupla con dos numeros(pares ordernados) [[(2,2)],[(1,1)]] matriz 2x1)
+	
+		1) Suma de vectores complejos     (a+b)
+		2) Inverso aditivo de vector complejo      (a.inversa())
+		3) Multiplicación de escalar por vector complejo       (a*c donde c es un escalar, c*a resultará en error)
+		4) Suma de matrices complejas      (a+b)
+		5) Inverso aditivo de matriz compleja      (a.inversa())
+		6) Multiplicación de escalar por matriz compleja     (a*d donde d es el escalar, d*a resultará en error)
+		7) Transpuesta de matriz compleja     (a.transpuesta())
+		8) Conjugada de matriz compleja     (a.conjugada())
+		9) Adjunta (daga) de matriz compleja      (a.adjunta())
+		10) Producto de matrices complejas      (a*b, tener en cuenta los tamaños, de lo contrario excepción de usuario)
+		11) Acción de matriz compleja sobre vector complejo     (b.accion(a) donde b es un vector y a es una matriz compatible)
+		12) Producto interno de vectores complejos     (a.productoInterno(b) donde a y b son vectores del mismo tamaño)
+		13) Norma de vector complejo     (a.norma())
+		14) Distancia entre dos vectores complejos       (a.distancia(b) donde a y b son vectores y del mismo tamaño)
+		15) ¿Es la matriz compleja una matriz unitaria?      (a.esUnitaria() -> bool)
+		16) ¿Es la matriz compleja una matriz hermitiana?      (esHermitiana() -> bool)
+		17) Producto tensorial de matrices complejas       (a.productoTensor(b))
+    
 
-    
-    
-    @staticmethod
-    def multiplicacion(a, b):
-        a1 , b1 = a.parteReal, a.parteImaginaria
-        a2, b2 = b. parteReal, b.parteImaginaria
-        return Complejo(a1*a2 - b1*b2, a1*b2 + b1*a2)
-    
-    @staticmethod
-    def resta(a, b):
-        return Complejo(a.parteReal - b.parteReal, a.parteImaginaria - b.parteImaginaria)
-    
-    
-    def modulo(self):
-        if(self.cartesiana == True):
-            a = self
-        else : 
-            a = self.cartesianas()
-        return math.sqrt((a.parteReal)**2 + (a.parteImaginaria)**2)
-    
-    #divide el complejo por un real
-    def divisionEscalar(self, divisor):
-        return Complejo(self.parteReal/divisor, self.parteImaginaria/ divisor)
-    
-    def multiplicacionEscalar(self, multiplo):
-        return Complejo(self.parteReal*multiplo, self.parteImaginaria*multiplo)
-    
-    def conjugado(self):
-        return Complejo(self.parteReal, -self.parteImaginaria)
-    
-    @staticmethod
-    def division(a,b):
-        #Al dividir a/b nos vamos a basar en la multiplicacion por el conjugado con divisor igual el cuadrado del modulo de b
-        divisor = b.modulo()**2
-        respuesta =  Complejo.multiplicacion(a, b.conjugado())
-        respuesta = respuesta.divisionEscalar(divisor)
-        return respuesta
-    
-    @staticmethod
-    def gradosARadianes(grado):
-        return grado*math.pi/180
-    
-    @staticmethod
-    def radianesAGrados(radian):
-        return radian*180/math.pi
-    
-    @staticmethod
-    def obtenerAngulo(x,y):
-        ans = math.atan2(y,x)
-        #Retorna en angulo de radianes positivo entre 0 y 2*pi
-        if(ans<0):
-            ans+=2*math.pi
-        return ans%(2*math.pi)
-    
-    
-    def polares(self):
-        if(self.cartesianas == False):
-            ans = Complejo(self.parteReal, self.parteImaginaria)
-        else:
-            angulo = Complejo.obtenerAngulo(self.parteReal,self.parteImaginaria)
-            ans = Complejo(self.modulo(), Complejo.radianesAGrados(angulo), False)
-        return ans
-        
-        
-    #Vamos a suponer que el complejo ya está en polares    
-    def cartesianas(self):
-        if(self.cartesiana == True):
-            ans = Complejo(self.parteReal, self.parteImaginaria)
-        else:
-            fase = Complejo.gradosARadianes(self.parteImaginaria)
-            ans = Complejo(self.parteReal*math.cos(fase), self.parteReal*math.sin(fase))
-            
-        return ans
-    def __mul__(self,b):
-        if(type(b) is float or type(b) is int):
-            return self.multiplicacionEscalar(b)
-        else:
-            return self.multiplicacion(self,b)
-    def __rmul__(self,b):
-        return self.__mul__(b)
-    def __sub__(self,b):
-        return self.resta(self,b)
-            
-    def __div__(self,b):
-        return self.division(self,b)
-    def __truediv__(self,b):
-        return self.division(self,b)
-    @staticmethod
-    def complejoDe(tupla):
-        
-        return Complejo(float(tupla[0]), float(tupla[1]))
-    
-    def __eq__(self, other):
-        a = self.cartesianas()
-        b = other.cartesianas()
-        return abs(a.parteReal-b.parteReal)<Complejo.TOLERANCIA and abs(a.parteImaginaria-b.parteImaginaria)<Complejo.TOLERANCIA
-    
-    def __ne__(self,other):
-        return not self.__eq__(other)
-    
+> # Pruebas
+	a) test_deberiaSumarZero():  Verifica que la suma de complejos de (0,0)
+    b) test_deberiaSumarBien():  Verifica que la suma de complejos sea correcta
+    c) test_deberiaRestarZero():  Verifica que la resta de complejos de (0,0)
+	d) test_deberiaRestarBien(): Verifica que la resta de complejos sea correcta
+    e) test_deberiaMultiplicarBien(): Verifica que la multiplicación de complejos sea correcta
+    f) test_deberiaDarexcepcionZero(): Verifica que al dividir entre 0 se genere un error
+	g) test_deberiaDividirBien():  Verifica que la division de complejos sea correcta
+    h) test_deberiaModulo():  Verifica ciertos vectores con sus respectivos modulos, verificando que si coincidan los resultados
+    i) test_deberiaConjugado():  Verifica el conjugado de ciertos vectores especiales
+    j) test_deberiaPolar():  Verifica que la forma polar de un Complejo sea correcta
+    k) test_deberiaCartesiano():  Verifica que la forma cartesiana de un Complejo sea correcta
         
 
 
-
-c) Breve descripción de las pruebas realizadas. Tener en cuenta realizar las pruebas contenidas
-en este documento y pruebas adicionales siguiendo su criterio.
 d) Información dirigida al usuario: Cómo usar el contenido del repositorio (librería y pruebas o
 documento Jupyter Notebook).
