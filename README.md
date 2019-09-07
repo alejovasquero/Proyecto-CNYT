@@ -40,7 +40,7 @@
 		17) Producto tensorial de matrices complejas       (a.productoTensor(b))
     
 
-> # Pruebas
+> # Pruebas Complejo
 	a) test_deberiaSumarZero():  Verifica que la suma de complejos de (0,0)
     b) test_deberiaSumarBien():  Verifica que la suma de complejos sea correcta
     c) test_deberiaRestarZero():  Verifica que la resta de complejos de (0,0)
@@ -52,6 +52,39 @@
     i) test_deberiaConjugado():  Verifica el conjugado de ciertos vectores especiales
     j) test_deberiaPolar():  Verifica que la forma polar de un Complejo sea correcta
     k) test_deberiaCartesiano():  Verifica que la forma cartesiana de un Complejo sea correcta
+    
+   ![Resultados](CTEST.png)
+
+
+
+
+
+
+
+
+> # Pruebas Matriz
+    a) test_deberiaSumarVectores():  Verifica que la suma de vectores sea correcta
+    b) test_deberiaInversoVector(): Verifica que el inverso aditivo de vectores sea correcto
+    c) test_deberiaMultiplicarEscalarVector():   Verifica que la multiplicación por un escalat sea correcta
+    d) test_deberiaSumarMatrices(): Verifica que la suma de matrices sea correcta
+    e) test_deberiaInversoMatriz():  Verifica que el inverso aditivo de una matriz sea correcto
+    f) test_deberiaMultiplicarEscalarMatriz():  Verifica que la multiplicación de una matriz por un escalar sea correcta
+    g) test_deberiaTransponerMatriz():  Verifica que la transpuesta de una matriz sea correcta
+    h) test_deberiaConjugar():   Verifica que la matriz conjugada de una matriz sea correcta
+    i) test_deberiaAdjuntaMatriz():  Verifica que la adjunta de una matriz sea correcta
+    j) test_deberiaProductoMatriz(): Verifica que la multiplicación entre matrices sea correcta
+    k) test_deberiaAccion():  Verifica que la acción de una matriz sobre un vector sea correcta
+    l) test_deberiaProductoInterno():  Verifica que el producto interno entre 2 vectores sea correcto
+    m) test_deberiaNormaVector():  Verifica que la norma de un vector sea correcta
+    n) test_deberiaDistancia(): Verifica que la distancia entre 2 vectores sea correcta
+    ñ) test_deberiaSerUnitaria():  Verifica que verifique correctamente matrices unitarias
+    o) test_deberiaSerHermitiana():  Verifica que verifique correctamente matrices hermitianas 
+    p) test_deberiaProductoTensor():  Verifica que el producto tensor entre 2 matrices funciones correctamente
+ ![Resultados](MTEST.png)
+        
+
+unittest.TextTestRunner().run(unittest.TestLoader().loadTestsFromTestCase(MatrizTest))
+
         
 
 
