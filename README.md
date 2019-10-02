@@ -102,7 +102,7 @@ c) Clase Systems(SISTEMAS_CLA_PROB_CUAN.ipynb)
 Representa un sistema de dinámica con propiedades probabilisticas, clásicas o cuánticas
 
 class Systems:
-    Atributos: Repsesentan los posibles estados que pueden tomar los sistemas dinámicos
+    - Atributos: Repsesentan los posibles estados que pueden tomar los sistemas dinámicos
     	- CLASSIC: Dinámica clásica
     	- PROBABILISTIC: Dinámica probabilistica
     	- QUANTUM: Dinámica cuántica
