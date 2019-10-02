@@ -102,12 +102,12 @@ c) Clase Systems(SISTEMAS_CLA_PROB_CUAN.ipynb)
 Representa un sistema de dinámica con propiedades probabilisticas, clásicas o cuánticas
 
 class Systems:
-    - Atributos: Repsesentan los posibles estados que pueden tomar los sistemas dinámicos
-    	- CLASSIC: Dinámica clásica
-    	- PROBABILISTIC: Dinámica probabilistica
-    	- QUANTUM: Dinámica cuántica
-    	- SLIT_QU: Dinámica de rendija cuántica
-    	- SLIT_PROB: Dinámica de rendija probabilistica
+    1) Atributos: Repsesentan los posibles estados que pueden tomar los sistemas dinámicos
+    	a) CLASSIC: Dinámica clásica
+    	b) PROBABILISTIC: Dinámica probabilistica
+    	c) QUANTUM: Dinámica cuántica
+    	d) SLIT_QU: Dinámica de rendija cuántica
+    	e) SLIT_PROB: Dinámica de rendija probabilistica
     Métodos:
     INVALID_SYSTEM = "The system is not valid"
     INCORRECT_FORMAT = "The matriz doesn't match de system format"
