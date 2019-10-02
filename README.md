@@ -1,4 +1,5 @@
 
+
 # **Ciencias Curso CNYT Ciencias naturales y tecnología**
 > _**Proyecto #1: Calculadora de matrices complejas**_\
 > _**4 de Septiembre de 2019**_\
@@ -11,7 +12,7 @@
         TOLERANCIA: Representa la distancia minima al definir igualdades entre reales
         Se presentará la operación y la manera de hacerla en la librería.
         Sea a y b números complejos representados en python, con parte real y parte imaginaria, teniendo las siguientes operaciones(a = Complejo(a,b) es igual a = a+bi):
-		1)  Suma         (a+b)
+	        1)  Suma         (a+b)
 		2)  Producto            (a*b)
 		3)  Resta              (a-b)
 		4)  División             (a/b, excepcion si b=0)
@@ -98,224 +99,37 @@
 
 
 
-c) Clase Systems(SISTEMAS_CLA_PROB_CUAN.ipynb)
-Representa un sistema de dinámica con propiedades probabilisticas, clásicas o cuánticas
+- # Clase Systems (SISTEMAS_CLA_PROB_CUAN.ipynb)
+		Representa un sistema de dinámica con propiedades probabilisticas, clásicas o cuánticas   
+    	    a) Atributos: Repsesentan los posibles estados que pueden tomar los sistemas dinámicos:     
+    	    	1) CLASSIC: Dinámica clásica   
+    			2) PROBABILISTIC: Dinámica probabilistica   
+    			3) QUANTUM: Dinámica cuántica   
+    			4) SLIT_QU: Dinámica de rendija cuántica   
+    			5) SLIT_PROB: Dinámica de rendija probabilistica   
+			    6) INVALID_SYSTEM = El sistema que se dio no es válido   
+	    		7) INCORRECT_FORMAT = La matriz de dinámica no cumple su propiedad especificada   
+	    		8) INVALID_VECTOR = El vector inicial o de probabilidades no es válido   
+    	Métodos:   
+		    	1) __init__(systemType, matrix, state0, clicks, statesA, statesB, assembled): Constructor que recibe la propiedad de la dinámica, la matriz de dinámica, el estado inicial y los clicks. Opcionalmente recibe la dimensión de los estados iniciales en los ensambles, y recibe el parámetro de si es un ensamble o no.
+		    	2) verifySystem(matrix, systemType): Verifica si la matriz dada cumple las propiedades del sistema especificado
+				3) verifyClassic(matrix): Verifica que la matriz dada cumple dinámica clásica
+				4) verificarColumnasEstocasticas(matrix): Verifica que las columnas de la matriz son columnas estocásticas
+			    5) verificarFilasEstocasticas(matrix): Verifica que las filas de la matriz son filas estocásticas
+			    6) verifyProbabilistic(matrix): Verifica que la matriz dada es doblemente estocástica
+				7) verifyQuantum(matrix): Verifica que la matriz cumple con las condiciones de dinámica cuántica
+				8) verifyVector(state0, systemType): Verifica que el vector dado cumple con la propiedad de dinámica dada
+				9) success(): Retorna si el sistema fue creado con éxito
+				10) obtainType(matrix): Retorna el tipo de dinámica que cumple la matriz dada
+				11) assembleSystems(systemA, viA, systemB, viB, t): Ensambla dos sistemas(systemA, systemB) con vectore iniciales(viA, viB) con t clicks de tiempo.
+				12) fullSlits(matrix, slits, typeS): Llena la matriz de rendijas dependiendo del tipo de rendija(cuántica o probabilistica)
+				13) fullTargets(matrix, slits,targets, vector): Llena la matriz de rendijas con los pesos de los blancos, teniendo en cuenta el vector de probabilidades
+				14) fullReturn(matrix, slits,targets): Llena la matriz de rendijas con los retornos de los blancos a si mismos
+				15) doubleSlit(slits, targets, vector): Crea un sistema de rendijas, recibiendo el número de rendijas, el número de blancos y el vector de probabilidades. El vector de probabilidades determina el tipo de sistema(cuántico o probabilistico)
+				16) obtenerDatos(): Retorna el vector probabilistico despúés de tantos clicks
+				17) showGraphic(): Muestra el gráficode barras del vector de probabilidades después de t clicks
 
-class Systems:
-    1) Atributos: Repsesentan los posibles estados que pueden tomar los sistemas dinámicos
-    	a) CLASSIC: Dinámica clásica
-    	b) PROBABILISTIC: Dinámica probabilistica
-    	c) QUANTUM: Dinámica cuántica
-    	d) SLIT_QU: Dinámica de rendija cuántica
-    	e) SLIT_PROB: Dinámica de rendija probabilistica
-    Métodos:
-    INVALID_SYSTEM = "The system is not valid"
-    INCORRECT_FORMAT = "The matriz doesn't match de system format"
-    INVALID_VECTOR = "The vector is not valid"
-    @staticmethod
-    def verifySystem(matrix, systemType):
-        ans = False
-        if(systemType==Systems.CLASSIC):
-            ans = Systems.verifyClassic(matrix)
-        elif(systemType==Systems.PROBABILISTIC):
-            ans = Systems.verifyProbabilistic(matrix)
-        elif(systemType==Systems.QUANTUM):
-            ans = Systems.verifyQuantum(matrix)
-        else: 
-            raise Exception(Systems.INVALID_SYSTEM)
-        return ans
-    
-    @staticmethod
-    def verifyClassic(matrix):
-        isValid = True
-        one = Complejo(1,0)
-        zero = Complejo(0,0)
-        columnSum = Complejo(0,0)
-        j = 0
-        while(j<matrix.columnas and isValid):
-            i=0
-            columnSum=Complejo(0,0)
-            while(i<matrix.filas and isValid):
-                isValid = isValid and (matrix[i,j]==one or matrix[i,j]==zero)
-                columnSum+=matrix[i,j]
-                i+=1
-            isValid= isValid and columnSum==one
-            j+=1
-        return isValid
-            
-    @staticmethod
-    def verificarColumnasEstocasticas(matrix):
-        isValid = True
-        one = Complejo(1,0)
-        zero = Complejo(0,0)
-        columnSum = Complejo(0,0)
-        j = 0
-        while(j<matrix.columnas and isValid):
-            i=0
-            while(i<matrix.filas and isValid):
-                s = matrix[i,j].parteReal
-                isValid = isValid and matrix[i,j].parteImaginaria==0 and s>=0 and s<=1
-                columnSum+=matrix[i,j]
-                i+=1
-            isValid= isValid and columnSum==one
-            columnSum=Complejo(0,0)
-            j+=1
-        
-        return isValid
-    
-    @staticmethod
-    def verificarFilasEstocasticas(matrix):
-        isValid = True
-        one = Complejo(1,0)
-        zero = Complejo(0,0)
-        columnSum = Complejo(0,0)
-        i = 0
-        while(i<matrix.filas and isValid):
-            j=0
-            while(j<matrix.columnas and isValid):
-                s = matrix[i,j].parteReal
-                isValid = isValid and matrix[i,j].parteImaginaria==0 and s>=0 and s<=1
-                columnSum+=matrix[i,j]
-                j+=1
-            isValid= isValid and columnSum==one
-            columnSum=Complejo(0,0)
-            i+=1
-        return isValid
-    
-    
-    @staticmethod
-    def verifyProbabilistic(matrix):
-        return Systems.verificarFilasEstocasticas(matrix) and Systems.verificarColumnasEstocasticas(matrix)
-    
-    @staticmethod
-    def verifyQuantum(matrix):
-        return matrix.esUnitaria()
-    
-    
-    @staticmethod
-    def verifyVector(state0, systemType):
-        ans= state0.columnas==1
-        if(systemType==Systems.CLASSIC):
-            ans = ans and Systems.verifyClassic(state0)
-        elif(systemType==Systems.PROBABILISTIC):
-            ans = ans and Systems.verificarColumnasEstocasticas(state0)
-        elif(systemType==Systems.QUANTUM):
-            prueba=Matriz(state0.filas,1)
-            for i in range(state0.filas):
-                prueba[i,0]=state0[i,0]*(state0[i,0].conjugado())
-                
-            
-            ans = ans and Systems.verificarColumnasEstocasticas(prueba)
-        else: 
-            raise Exception(Systems.INVALID_VECTOR)
-        return ans
-    
-    def __init__(self, systemType, matrix: Matriz, state0, clicks, statesA=None, statesB=None, assembled=False):
-        self.state = [True, None, None]
-        self.statesA=statesA
-        self.statesB=statesB
-        self.assembled=assembled
-        self.type=None
-        #[0]=isValid system, [1]=matriz^clicks, [2]=state0->final[t]
-        if(systemType!=Systems.SLIT_QU and systemType!=Systems.SLIT_PROB and (not Systems.verifySystem(matrix, systemType) or matrix.filas==0 or matrix.filas!=matrix.columnas 
-           or matrix.filas!=state0.filas)):
-            self.state[0]=False
-        else:
-            
-            self.state[1]=matrix**clicks
-            self.state[2]=self.state[1]*state0
-            self.type=systemType
-   
-    def success(self):
-        return self.state[0]==True and self.state[1]!=None and self.state[2]!=None
-    
-    
-    @staticmethod
-    def obtainType(matrix):
-        ans = -1
-        if(Systems.verifyClassic(matrix)):
-            ans = Systems.CLASSIC
-        elif(Systems.verifyProbabilistic(matrix)):
-            ans = Systems.PROBABILISTIC
-        elif(Systems.verifyQuantum(matrix)):
-            ans = Systems.QUANTUM
-        return ans
-    
-    
-    @staticmethod
-    def assembleSystems(systemA, viA, systemB, viB, t):
-        assembled = systemA.productoTensor(systemB)
-        statei = viA.productoTensor(viB)
-        return Systems(Systems.obtainType(systemA), assembled, statei, t, viA.filas, viB.filas, True)
-    
-    @staticmethod
-    def fullSlits(matrix, slits, typeS):
-        t=1/slits
-        if(typeS==Systems.SLIT_QU):
-            t=t**0.5
-        for i in range(1, slits+1):
-            matrix[i,0]=Complejo(t,0)
-    
-    @staticmethod
-    def fullTargets(matrix, slits,targets, vector):
-        begin=slits+1
-        final=begin+2*targets+1
-        
-        for j in range(1, slits+1):
-            for i in range(begin, final):
-                
-                matrix[i,j]=vector[i%begin,0]
-            begin+=targets+1
-            final=begin+2*targets+1
-            
-    @staticmethod
-    def fullReturn(matrix, slits,targets):
-        begin=slits+1
-        for i in range(begin, matrix.filas):
-            matrix[i,i]=Complejo(1,0)
-    
-    @staticmethod
-    def doubleSlit(slits, targets, vector):
-        prob=Systems.verifyVector(vector, Systems.PROBABILISTIC)
-        quan=Systems.verifyVector(vector, Systems.QUANTUM)
-        
-        if(vector.filas!=2*targets+1 or vector.columnas!=1 or not (prob or quan)):
-            raise Exception("Vector invalid")
-        n=1+slits+(slits+targets*(slits+1))
-        typeS=-1
-        if(prob):
-            typeS=Systems.SLIT_PROB
-        else:
-            typeS=Systems.SLIT_QU
-        matrix=Matriz(n,n)
-        Systems.fullSlits(matrix, slits, typeS)
-        Systems.fullTargets(matrix, slits,targets, vector)
-        Systems.fullReturn(matrix, slits, targets)
-        state0=Matriz(n,1)
-        state0[0,0]=Complejo(1,0)
-        
-        return Systems(typeS, matrix, state0, 2)
-        
-    def obtenerDatos(self):
-        ans=[]
-        if(self.type==Systems.QUANTUM or self.type==Systems.SLIT_QU):
-            for i in range(self.state[2].filas):
-                ans.append(self.state[2][i,0].modulo()**2)
-        else:
-            for i in range(self.state[2].filas):
-                ans.append(self.state[2][i,0].parteReal)
-        
-        return ans
-    def showGraphic(self):
-        fig = plt.figure()
-        
-        ax=fig.add_subplot(111)
-        datos=self.obtenerDatos()
-        xx=range(len(datos))
-        letter=[str(i) for i in range(len(datos))]
-        ax.bar(xx, datos , color=(0,1,0), align="center")
-        ax.set_xticks(xx)
-        ax.set_xticklabels(letter)
-        plt.show()
-    
+
+		
+
 
