@@ -111,23 +111,39 @@
 	    		7) INCORRECT_FORMAT = La matriz de dinámica no cumple su propiedad especificada   
 	    		8) INVALID_VECTOR = El vector inicial o de probabilidades no es válido   
     	Métodos:   
-		    	1) __init__(systemType, matrix, state0, clicks, statesA, statesB, assembled): Constructor que recibe la propiedad de la dinámica, la matriz de dinámica, el estado inicial y los clicks. Opcionalmente recibe la dimensión de los estados iniciales en los ensambles, y recibe el parámetro de si es un ensamble o no.
-		    	2) verifySystem(matrix, systemType): Verifica si la matriz dada cumple las propiedades del sistema especificado
-				3) verifyClassic(matrix): Verifica que la matriz dada cumple dinámica clásica
+		    	1) __init__(systemType, matrix, state0, clicks, statesA, statesB, assembled): 
+			    	Constructor que recibe la propiedad de la dinámica, la matriz de dinámica, el estado inicial y los clicks. Opcionalmente recibe la dimensión de los estados iniciales en los ensambles, y recibe el parámetro de si es un ensamble o no.
+		    	2) verifySystem(matrix, systemType): 
+			    	Verifica si la matriz dada cumple las propiedades del sistema especificado
+				3) verifyClassic(matrix): 
+					Verifica que la matriz dada cumple dinámica clásica
 				4) verificarColumnasEstocasticas(matrix): Verifica que las columnas de la matriz son columnas estocásticas
-			    5) verificarFilasEstocasticas(matrix): Verifica que las filas de la matriz son filas estocásticas
-			    6) verifyProbabilistic(matrix): Verifica que la matriz dada es doblemente estocástica
-				7) verifyQuantum(matrix): Verifica que la matriz cumple con las condiciones de dinámica cuántica
-				8) verifyVector(state0, systemType): Verifica que el vector dado cumple con la propiedad de dinámica dada
-				9) success(): Retorna si el sistema fue creado con éxito
-				10) obtainType(matrix): Retorna el tipo de dinámica que cumple la matriz dada
-				11) assembleSystems(systemA, viA, systemB, viB, t): Ensambla dos sistemas(systemA, systemB) con vectore iniciales(viA, viB) con t clicks de tiempo.
-				12) fullSlits(matrix, slits, typeS): Llena la matriz de rendijas dependiendo del tipo de rendija(cuántica o probabilistica)
-				13) fullTargets(matrix, slits,targets, vector): Llena la matriz de rendijas con los pesos de los blancos, teniendo en cuenta el vector de probabilidades
-				14) fullReturn(matrix, slits,targets): Llena la matriz de rendijas con los retornos de los blancos a si mismos
-				15) doubleSlit(slits, targets, vector): Crea un sistema de rendijas, recibiendo el número de rendijas, el número de blancos y el vector de probabilidades. El vector de probabilidades determina el tipo de sistema(cuántico o probabilistico)
-				16) obtenerDatos(): Retorna el vector probabilistico despúés de tantos clicks
-				17) showGraphic(): Muestra el gráficode barras del vector de probabilidades después de t clicks
+			    5) verificarFilasEstocasticas(matrix): 
+				    Verifica que las filas de la matriz son filas estocásticas
+			    6) verifyProbabilistic(matrix): 
+				    Verifica que la matriz dada es doblemente estocástica
+				7) verifyQuantum(matrix): 
+					Verifica que la matriz cumple con las condiciones de dinámica cuántica
+				8) verifyVector(state0, systemType): 
+					Verifica que el vector dado cumple con la propiedad de dinámica dada
+				9) success(): 
+					Retorna si el sistema fue creado con éxito
+				10) obtainType(matrix): 
+					Retorna el tipo de dinámica que cumple la matriz dada
+				11) assembleSystems(systemA, viA, systemB, viB, t): 
+					Ensambla dos sistemas(systemA, systemB) con vectore iniciales(viA, viB) con t clicks de tiempo.
+				12) fullSlits(matrix, slits, typeS): 
+					Llena la matriz de rendijas dependiendo del tipo de rendija(cuántica o probabilistica)
+				13) fullTargets(matrix, slits,targets, vector): 
+					Llena la matriz de rendijas con los pesos de los blancos, teniendo en cuenta el vector de probabilidades
+				14) fullReturn(matrix, slits,targets): 
+					Llena la matriz de rendijas con los retornos de los blancos a si mismos
+				15) doubleSlit(slits, targets, vector): 
+					Crea un sistema de rendijas, recibiendo el número de rendijas, el número de blancos y el vector de probabilidades. El vector de probabilidades determina el tipo de sistema(cuántico o probabilistico)
+				16) obtenerDatos(): 
+					Retorna el vector probabilistico despúés de tantos clicks
+				17) showGraphic(): 
+					Muestra el gráficode barras del vector de probabilidades después de t clicks
 
 
 		
