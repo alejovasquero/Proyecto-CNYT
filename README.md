@@ -1,5 +1,6 @@
 
 
+
 # **Ciencias Curso CNYT Ciencias naturales y tecnología**
 > _**Proyecto #1: Calculadora de matrices complejas**_\
 > _**4 de Septiembre de 2019**_\
@@ -144,6 +145,25 @@
 					Retorna el vector probabilistico despúés de tantos clicks
 				17) showGraphic(): 
 					Muestra el gráficode barras del vector de probabilidades después de t clicks
+				18) observableMedia(ket, observable): Retorna el valor de la media de un ket conb respecto a un observable dado
+				19) observableVarianza(ket, observable): Retorna el valor de la varianza de un ket con respecto a un observable dado
+				20) valoresPropios(matrix): Retorna los valores propios de una matriz(NO COMPLETO)
+				21) particulaProbabilidad(n, ket):
+				Muestra y retorna la distribución de probabilidad de un ket con respecto a su estado actual
+					
+	###	Pruebas:
+		- def test_deberiaClasico(self): Revisa que sea posible ensamblar un sistema clásico de manera exitosa, cumpliendo las coindiciones de un sistema clásico
+	    - def test_deberiaEnsamblar(self): Revisa que sea posible ensamblar un sistema probabilistico
+		- def test_deberiaClfffasico(self): Revisa el resultado después de t clicks
+		- def test_deberiaCrearRendija(self): Revisa que se pueda crear un sistema de rendijas de manera exitosa
+		- def test_deberiaMediaObservavbleFallar(self): Revisa que las funciones revisen que los obervables no hermitianos
+		- def test_deberiaMedia(self): Revisa que la media de ciertos casos sea la esperada
+		- def test_deberiaPerticula(self): Revisa los resultados de probabilidad de un ket
+		- def test_deberiaVarianza(self): Revisa que la varianza de ciertos casos sea la esperada
+        
+        
+
+
 
 
 		
